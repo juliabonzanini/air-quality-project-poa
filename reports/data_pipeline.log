@@ -1,0 +1,1340 @@
+2025-10-16 14:33:03,469 - INFO - Diretórios de saída criados/verificados
+2025-10-16 14:33:03,469 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 14:33:03,470 - INFO - Fase 1: Extração de dados
+2025-10-16 14:33:03,470 - INFO - Processando dados FEPAM...
+2025-10-16 14:33:03,472 - INFO -   Lendo temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 14:33:03,706 - ERROR - ERRO CRÍTICO no pipeline: ['PM2_5', 'PM10']
+2025-10-16 14:33:03,711 - ERROR - Traceback (most recent call last):
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 79, in run_pipeline
+    self._extract_data()
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 106, in _extract_data
+    self._extract_fepam_data()
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 196, in _extract_fepam_data
+    all_data.append(df_clean.dropna(subset=['PM2_5', 'PM10'], how='all'))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\core\frame.py", line 6692, in dropna
+    raise KeyError(np.array(subset)[check].tolist())
+KeyError: ['PM2_5', 'PM10']
+
+2025-10-16 14:33:03,712 - ERROR - Pipeline falhou!
+2025-10-16 14:33:49,472 - INFO - Diretórios criados/verificados
+2025-10-16 14:33:49,472 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 14:33:49,472 - INFO - Fase 1: Extração de dados
+2025-10-16 14:33:49,473 - INFO - Processando dados FEPAM...
+2025-10-16 14:33:49,473 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 14:33:49,572 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv: 8736 registros
+2025-10-16 14:33:49,573 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv
+2025-10-16 14:33:49,583 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv: 6070 registros
+2025-10-16 14:33:49,583 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv
+2025-10-16 14:33:49,594 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv: 8712 registros
+2025-10-16 14:33:49,594 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv
+2025-10-16 14:33:49,608 - INFO -   OK temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv: 1319 registros
+2025-10-16 14:33:49,613 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 14:33:49,613 - INFO - Processando dados INMET...
+2025-10-16 14:33:49,615 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 14:33:49,650 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 14:33:49,650 - INFO -     Número de colunas: 9
+2025-10-16 14:33:49,767 - INFO - INMET: 43848 registros
+2025-10-16 14:33:49,770 - INFO - Processando dados DATASUS...
+2025-10-16 14:33:49,770 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 14:33:49,775 - INFO - Processando dados DENATRAN...
+2025-10-16 14:33:49,776 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 14:33:49,778 - ERROR - Erro processando ano 2006: 2006-11-05 00:00:00
+2025-10-16 14:33:49,778 - ERROR - Erro processando ano 2007: 2007-10-14 00:00:00
+2025-10-16 14:33:49,779 - ERROR - Erro processando ano 2008: 2008-10-19 00:00:00
+2025-10-16 14:33:49,779 - ERROR - Erro processando ano 2009: 2009-10-18 00:00:00
+2025-10-16 14:33:49,779 - ERROR - Erro processando ano 2010: 2010-10-17 00:00:00
+2025-10-16 14:33:49,780 - ERROR - Erro processando ano 2011: 2011-10-16 00:00:00
+2025-10-16 14:33:49,780 - ERROR - Erro processando ano 2012: 2012-10-21 00:00:00
+2025-10-16 14:33:49,781 - ERROR - Erro processando ano 2013: 2013-10-20 00:00:00
+2025-10-16 14:33:49,781 - ERROR - Erro processando ano 2014: 2014-10-19 00:00:00
+2025-10-16 14:33:49,781 - ERROR - Erro processando ano 2015: 2015-10-18 00:00:00
+2025-10-16 14:33:49,782 - ERROR - Erro processando ano 2016: 2016-10-16 00:00:00
+2025-10-16 14:33:49,782 - ERROR - Erro processando ano 2017: 2017-10-15 00:00:00
+2025-10-16 14:33:49,782 - ERROR - Erro processando ano 2018: 2018-11-04 00:00:00
+2025-10-16 14:33:49,786 - INFO - DENATRAN: 2192 registros diários
+2025-10-16 14:33:49,786 - INFO - Processando dados INPE...
+2025-10-16 14:33:49,786 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 14:33:49,790 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 14:33:49,790 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 14:33:49,793 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 14:33:49,793 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 14:33:49,796 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 14:33:49,797 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 14:33:49,803 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 14:33:49,803 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 14:33:49,809 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 14:33:49,813 - INFO - Queimadas: 6 dias com dados
+2025-10-16 14:33:49,813 - INFO - Fase 2: Transformação de dados
+2025-10-16 14:33:49,823 - INFO - OK fepam: resample aplicado
+2025-10-16 14:33:49,827 - INFO - OK inmet: resample aplicado
+2025-10-16 14:33:49,830 - INFO - OK denatran: resample aplicado
+2025-10-16 14:33:49,830 - INFO - OK inpe: resample aplicado
+2025-10-16 14:33:49,830 - INFO - Fase 3: Unificação de dados
+2025-10-16 14:33:49,837 - INFO - OK inmet: unificado com sucesso
+2025-10-16 14:33:49,838 - INFO - OK denatran: unificado com sucesso
+2025-10-16 14:33:49,839 - INFO - OK inpe: unificado com sucesso
+2025-10-16 14:33:49,840 - INFO - Dataset unificado: 2192 registros, 16 features
+2025-10-16 14:33:49,840 - INFO - Fase 4: Engenharia de Features
+2025-10-16 14:33:49,847 - INFO - Features criadas: 28 colunas totais
+2025-10-16 14:33:49,848 - INFO - Fase 5: Validação de Dados
+2025-10-16 14:33:49,848 - INFO - Dataset final: 2192 linhas, 28 colunas
+2025-10-16 14:33:49,848 - INFO - Período: 2019-01-01 00:00:00-02:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 14:33:49,850 - WARNING - Colunas com muitos missing values: 13 colunas
+2025-10-16 14:33:49,850 - WARNING -     CO_Porto_Alegre: 97.5% missing
+2025-10-16 14:33:49,850 - WARNING -     NO2_Porto_Alegre: 97.7% missing
+2025-10-16 14:33:49,850 - WARNING -     O3_Porto_Alegre: 97.5% missing
+2025-10-16 14:33:49,850 - WARNING -     PM2_5_Porto_Alegre: 97.5% missing
+2025-10-16 14:33:49,850 - WARNING -     SO2_Porto_Alegre: 97.9% missing
+2025-10-16 14:33:49,850 - WARNING -     focos_queimadas_count: 99.7% missing
+2025-10-16 14:33:49,850 - WARNING -     focos_queimadas_frp_sum: 99.7% missing
+2025-10-16 14:33:49,851 - WARNING -     focos_queimadas_frp_mean: 99.7% missing
+2025-10-16 14:33:49,851 - WARNING -     focos_queimadas_frp_max: 99.7% missing
+2025-10-16 14:33:49,851 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.5% missing
+2025-10-16 14:33:49,851 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.6% missing
+2025-10-16 14:33:49,851 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.6% missing
+2025-10-16 14:33:49,851 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.8% missing
+2025-10-16 14:33:49,851 - INFO - Validação concluída
+2025-10-16 14:33:49,851 - INFO - Fase 6: Persistência de Dados
+2025-10-16 14:33:49,900 - INFO - Dados salvos:
+2025-10-16 14:33:49,900 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 14:33:49,900 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 14:33:49,900 - INFO -    Período: 2019-01-01 a 2024-12-31
+2025-10-16 14:33:49,900 - INFO -    Dimensões: 2192 linhas x 28 colunas
+2025-10-16 14:33:49,901 - INFO - Pipeline concluído em 0.43 segundos
+2025-10-16 14:33:49,901 - INFO - Pipeline executado com sucesso!
+2025-10-16 14:46:43,911 - INFO - Diretórios criados/verificados
+2025-10-16 14:46:43,912 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 14:46:43,912 - INFO - Fase 1: Extração de dados
+2025-10-16 14:46:43,912 - INFO - Processando dados FEPAM...
+2025-10-16 14:46:43,913 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 14:46:44,020 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv: 8736 registros
+2025-10-16 14:46:44,020 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv
+2025-10-16 14:46:44,037 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv: 6070 registros
+2025-10-16 14:46:44,037 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv
+2025-10-16 14:46:44,049 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv: 8712 registros
+2025-10-16 14:46:44,049 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv
+2025-10-16 14:46:44,065 - INFO -   OK temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv: 1319 registros
+2025-10-16 14:46:44,070 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 14:46:44,071 - INFO - Processando dados INMET...
+2025-10-16 14:46:44,071 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 14:46:44,112 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 14:46:44,112 - INFO -     Número de colunas: 9
+2025-10-16 14:46:44,226 - INFO - INMET: 43848 registros
+2025-10-16 14:46:44,228 - INFO - Processando dados DATASUS...
+2025-10-16 14:46:44,228 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 14:46:44,233 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 14:46:44,233 - INFO -   Coluna de data: None, Coluna de internações: None
+2025-10-16 14:46:44,233 - WARNING - Colunas de data/internações não encontradas no DATASUS
+2025-10-16 14:46:44,233 - INFO - Processando dados DENATRAN...
+2025-10-16 14:46:44,234 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 14:46:44,236 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 14:46:44,238 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 14:46:44,238 - INFO - Processando dados INPE...
+2025-10-16 14:46:44,239 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 14:46:44,242 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 14:46:44,243 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 14:46:44,246 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 14:46:44,246 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 14:46:44,249 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 14:46:44,249 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 14:46:44,253 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 14:46:44,253 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 14:46:44,256 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 14:46:44,266 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 14:46:44,266 - INFO - Fase 2: Transformação de dados
+2025-10-16 14:46:44,275 - INFO - OK fepam: resample aplicado
+2025-10-16 14:46:44,280 - INFO - OK inmet: resample aplicado
+2025-10-16 14:46:44,282 - INFO - OK denatran: resample aplicado
+2025-10-16 14:46:44,282 - INFO - OK inpe: resample aplicado
+2025-10-16 14:46:44,282 - INFO - Fase 3: Unificação de dados
+2025-10-16 14:46:44,289 - INFO - OK inmet: unificado com sucesso
+2025-10-16 14:46:44,290 - INFO - OK denatran: unificado com sucesso
+2025-10-16 14:46:44,291 - INFO - OK inpe: unificado com sucesso
+2025-10-16 14:46:44,291 - INFO - Dataset unificado: 1827 registros, 16 features
+2025-10-16 14:46:44,291 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 14:46:44,291 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 14:46:44,291 - INFO - Fase 4: Engenharia de Features
+2025-10-16 14:46:44,295 - INFO - Features criadas: 28 colunas totais
+2025-10-16 14:46:44,296 - INFO - Fase 5: Validação de Dados
+2025-10-16 14:46:44,296 - INFO - Dataset final: 1827 linhas, 28 colunas
+2025-10-16 14:46:44,296 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 14:46:44,296 - INFO - Fontes de dados presentes: ['DENATRAN', 'INPE']
+2025-10-16 14:46:44,297 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 14:46:44,297 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 14:46:44,297 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 14:46:44,297 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 14:46:44,297 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 14:46:44,297 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 14:46:44,297 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 14:46:44,297 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 14:46:44,297 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 14:46:44,297 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 14:46:44,297 - INFO - Validação concluída
+2025-10-16 14:46:44,298 - INFO - Fase 6: Persistência de Dados
+2025-10-16 14:46:44,341 - INFO - Dados salvos:
+2025-10-16 14:46:44,341 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 14:46:44,341 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 14:46:44,341 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 14:46:44,341 - INFO -    Dimensões: 1827 linhas x 28 colunas
+2025-10-16 14:46:44,341 - INFO - Pipeline concluído em 0.43 segundos
+2025-10-16 14:46:44,341 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:00:05,622 - INFO - Diretórios criados/verificados
+2025-10-16 15:00:05,622 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:00:05,622 - INFO - Fase 1: Extração de dados
+2025-10-16 15:00:05,622 - INFO - Processando dados FEPAM...
+2025-10-16 15:00:05,623 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:00:06,521 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:00:06,953 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:00:07,436 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:00:07,815 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:00:07,820 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:00:07,820 - INFO - Processando dados INMET...
+2025-10-16 15:00:07,821 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:00:07,860 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:00:07,860 - INFO -     Número de colunas: 9
+2025-10-16 15:00:07,968 - INFO - INMET: 43848 registros
+2025-10-16 15:00:07,970 - INFO - Processando dados DATASUS...
+2025-10-16 15:00:07,971 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:00:07,975 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 15:00:07,975 - INFO -   Coluna de data (assumida 1ª): 2019, Coluna de internações (assumida 2ª): 558
+2025-10-16 15:00:07,976 - ERROR - Erro processando DATASUS: to_datetime() got an unexpected keyword argument 'locale'
+2025-10-16 15:00:07,977 - ERROR - Traceback (most recent call last):
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 374, in _extract_datasus_data
+    df_filtered['datetime'] = pd.to_datetime('01/' + df_filtered['mes_ano'],
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: to_datetime() got an unexpected keyword argument 'locale'
+
+2025-10-16 15:00:07,978 - INFO - Processando dados DENATRAN...
+2025-10-16 15:00:07,978 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:00:07,980 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:00:07,984 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:00:07,984 - INFO - Processando dados INPE...
+2025-10-16 15:00:07,985 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:00:07,989 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:00:07,989 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:00:07,992 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:00:07,992 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:00:07,995 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:00:07,995 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:00:07,999 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:00:07,999 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:00:08,002 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:00:08,011 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:00:08,011 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:00:08,020 - INFO - OK fepam: resample aplicado
+2025-10-16 15:00:08,026 - INFO - OK inmet: resample aplicado
+2025-10-16 15:00:08,029 - INFO - OK denatran: resample aplicado
+2025-10-16 15:00:08,031 - ERROR - ERRO transformando inpe: "None of ['datetime'] are in the columns"
+2025-10-16 15:00:08,031 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:00:08,040 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:00:08,041 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:00:08,043 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:00:08,043 - INFO - Dataset unificado: 1827 registros, 16 features
+2025-10-16 15:00:08,043 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:00:08,044 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:00:08,044 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:00:08,048 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:00:08,049 - INFO - Features criadas: 28 colunas totais
+2025-10-16 15:00:08,049 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:00:08,049 - INFO - Dataset final: 1827 linhas, 28 colunas
+2025-10-16 15:00:08,049 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:00:08,050 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DENATRAN', 'INPE']
+2025-10-16 15:00:08,051 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 15:00:08,051 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:00:08,051 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:00:08,051 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:00:08,051 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:00:08,051 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:00:08,051 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:00:08,051 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:00:08,052 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:00:08,052 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:00:08,052 - INFO - Validação concluída
+2025-10-16 15:00:08,052 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:00:08,100 - INFO - Dados salvos:
+2025-10-16 15:00:08,100 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:00:08,101 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:00:08,101 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:00:08,101 - INFO -    Dimensões: 1827 linhas x 28 colunas
+2025-10-16 15:00:08,101 - INFO - Pipeline concluído em 2.48 segundos
+2025-10-16 15:00:08,101 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:03:45,060 - INFO - Diretórios criados/verificados
+2025-10-16 15:03:45,060 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:03:45,061 - INFO - Fase 1: Extração de dados
+2025-10-16 15:03:45,061 - INFO - Processando dados FEPAM...
+2025-10-16 15:03:45,062 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:03:46,152 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:03:46,569 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:03:47,000 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:03:47,379 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:03:47,385 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:03:47,385 - INFO - Processando dados INMET...
+2025-10-16 15:03:47,386 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:03:47,422 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:03:47,422 - INFO -     Número de colunas: 9
+2025-10-16 15:03:47,532 - INFO - INMET: 43848 registros
+2025-10-16 15:03:47,534 - INFO - Processando dados DATASUS...
+2025-10-16 15:03:47,535 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:03:47,539 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 15:03:47,539 - INFO -   Coluna de data (assumida 1ª): 2019, Coluna de internações (assumida 2ª): 558
+2025-10-16 15:03:47,547 - WARNING - Nenhum registro DATASUS no período 2020-2024 após conversão de data
+2025-10-16 15:03:47,548 - INFO - Processando dados DENATRAN...
+2025-10-16 15:03:47,548 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:03:47,550 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:03:47,553 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:03:47,553 - INFO - Processando dados INPE...
+2025-10-16 15:03:47,554 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:03:47,558 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:03:47,559 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:03:47,564 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:03:47,564 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:03:47,568 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:03:47,568 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:03:47,573 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:03:47,573 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:03:47,576 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:03:47,586 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:03:47,586 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:03:47,597 - INFO - OK fepam: resample aplicado
+2025-10-16 15:03:47,602 - INFO - OK inmet: resample aplicado
+2025-10-16 15:03:47,605 - INFO - OK denatran: resample aplicado
+2025-10-16 15:03:47,605 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:03:47,606 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:03:47,615 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:03:47,616 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:03:47,617 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:03:47,618 - INFO - Dataset unificado: 1827 registros, 16 features
+2025-10-16 15:03:47,618 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:03:47,619 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:03:47,619 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:03:47,624 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:03:47,625 - INFO - Features criadas: 28 colunas totais
+2025-10-16 15:03:47,625 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:03:47,625 - INFO - Dataset final: 1827 linhas, 28 colunas
+2025-10-16 15:03:47,625 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:03:47,626 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DENATRAN', 'INPE']
+2025-10-16 15:03:47,627 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 15:03:47,627 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:03:47,628 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:03:47,628 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:03:47,628 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:03:47,628 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:03:47,628 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:03:47,628 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:03:47,628 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:03:47,628 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:03:47,628 - INFO - Validação concluída
+2025-10-16 15:03:47,628 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:03:47,673 - INFO - Dados salvos:
+2025-10-16 15:03:47,673 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:03:47,673 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:03:47,673 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:03:47,673 - INFO -    Dimensões: 1827 linhas x 28 colunas
+2025-10-16 15:03:47,674 - INFO - Pipeline concluído em 2.61 segundos
+2025-10-16 15:03:47,674 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:05:04,142 - INFO - Diretórios criados/verificados
+2025-10-16 15:05:04,143 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:05:04,143 - INFO - Fase 1: Extração de dados
+2025-10-16 15:05:04,143 - INFO - Processando dados FEPAM...
+2025-10-16 15:05:04,143 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 15:05:04,248 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv: 8736 registros
+2025-10-16 15:05:04,248 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv
+2025-10-16 15:05:04,260 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv: 6070 registros
+2025-10-16 15:05:04,260 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv
+2025-10-16 15:05:04,273 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv: 8712 registros
+2025-10-16 15:05:04,273 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv
+2025-10-16 15:05:04,297 - INFO -   OK temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv: 1319 registros
+2025-10-16 15:05:04,303 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:05:04,303 - INFO - Processando dados INMET...
+2025-10-16 15:05:04,304 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:05:04,344 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:05:04,344 - INFO -     Número de colunas: 9
+2025-10-16 15:05:04,464 - INFO - INMET: 43848 registros
+2025-10-16 15:05:04,467 - INFO - Processando dados DATASUS...
+2025-10-16 15:05:04,468 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:05:04,468 - INFO -   Cabeçalho encontrado na linha 0
+2025-10-16 15:05:04,469 - ERROR - Erro processando DATASUS: Error tokenizing data. C error: Expected 1 fields in line 5, saw 2
+
+2025-10-16 15:05:04,471 - ERROR - Traceback (most recent call last):
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 331, in _extract_datasus_data
+    df = pd.read_csv(file_path, sep=';', skiprows=header_line, encoding='utf-8')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 626, in _read
+    return parser.read(nrows)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 1 fields in line 5, saw 2
+
+
+2025-10-16 15:05:04,471 - INFO - Processando dados DENATRAN...
+2025-10-16 15:05:04,472 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:05:04,474 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:05:04,477 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:05:04,477 - INFO - Processando dados INPE...
+2025-10-16 15:05:04,477 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:05:04,481 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:05:04,481 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:05:04,485 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:05:04,485 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:05:04,488 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:05:04,488 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:05:04,494 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:05:04,494 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:05:04,500 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:05:04,512 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:05:04,512 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:05:04,522 - INFO - OK fepam: resample aplicado
+2025-10-16 15:05:04,528 - INFO - OK inmet: resample aplicado
+2025-10-16 15:05:04,531 - INFO - OK denatran: resample aplicado
+2025-10-16 15:05:04,531 - INFO - OK inpe: resample aplicado
+2025-10-16 15:05:04,531 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:05:04,538 - INFO - Base FEPAM processada: 55 registros, 5 colunas
+2025-10-16 15:05:04,540 - INFO - OK inmet: unificado com sucesso - 1827 registros
+2025-10-16 15:05:04,542 - INFO - OK denatran: unificado com sucesso - 1827 registros
+2025-10-16 15:05:04,543 - INFO - OK inpe: unificado com sucesso - 1827 registros
+2025-10-16 15:05:04,543 - INFO - Dataset unificado: 1827 registros, 16 features
+2025-10-16 15:05:04,544 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:05:04,544 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:05:04,544 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:05:04,550 - INFO - Features criadas: 28 colunas totais
+2025-10-16 15:05:04,550 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:05:04,550 - INFO - Dataset final: 1827 linhas, 28 colunas
+2025-10-16 15:05:04,550 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:05:04,550 - INFO -   FEPAM: 9 colunas de poluentes
+2025-10-16 15:05:04,550 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DENATRAN', 'INPE']
+2025-10-16 15:05:04,550 - INFO - Missing values por fonte:
+2025-10-16 15:05:04,552 - INFO -   FEPAM - Colunas com >50% missing: 9
+2025-10-16 15:05:04,552 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:05:04,552 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:05:04,552 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:05:04,552 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:05:04,552 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:05:04,552 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:05:04,552 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:05:04,552 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:05:04,552 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:05:04,554 - WARNING -   INMET - Colunas com >50% missing: 9
+2025-10-16 15:05:04,556 - INFO - Validação concluída
+2025-10-16 15:05:04,556 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:05:04,598 - INFO - Dados salvos:
+2025-10-16 15:05:04,598 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:05:04,598 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:05:04,599 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:05:04,599 - INFO -    Dimensões: 1827 linhas x 28 colunas
+2025-10-16 15:05:04,599 - INFO - Pipeline concluído em 0.46 segundos
+2025-10-16 15:05:04,599 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:06:38,579 - INFO - Diretórios criados/verificados
+2025-10-16 15:06:38,579 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:06:38,579 - INFO - Fase 1: Extração de dados
+2025-10-16 15:06:38,579 - INFO - Processando dados FEPAM...
+2025-10-16 15:06:38,580 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:06:39,411 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:06:39,790 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:06:40,197 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:06:40,551 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:06:40,556 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:06:40,556 - INFO - Processando dados INMET...
+2025-10-16 15:06:40,556 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:06:40,592 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:06:40,592 - INFO -     Número de colunas: 9
+2025-10-16 15:06:40,694 - INFO - INMET: 43848 registros
+2025-10-16 15:06:40,697 - INFO - Processando dados DATASUS...
+2025-10-16 15:06:40,697 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:06:40,701 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 15:06:40,701 - INFO -   Coluna de data (assumida 1ª): 2019, Coluna de internações (assumida 2ª): 558
+2025-10-16 15:06:40,708 - WARNING - Nenhum registro DATASUS no período 2020-2024 após conversão de data
+2025-10-16 15:06:40,708 - INFO - Processando dados DENATRAN...
+2025-10-16 15:06:40,709 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:06:40,711 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:06:40,714 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:06:40,714 - INFO - Processando dados INPE...
+2025-10-16 15:06:40,714 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:06:40,718 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:06:40,718 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:06:40,721 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:06:40,721 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:06:40,724 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:06:40,724 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:06:40,727 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:06:40,727 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:06:40,730 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:06:40,738 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:06:40,738 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:06:40,747 - INFO - OK fepam: resample aplicado
+2025-10-16 15:06:40,751 - INFO - OK inmet: resample aplicado
+2025-10-16 15:06:40,753 - INFO - OK denatran: resample aplicado
+2025-10-16 15:06:40,753 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:06:40,754 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:06:40,762 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:06:40,762 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:06:40,763 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:06:40,764 - INFO - Dataset unificado: 1827 registros, 16 features
+2025-10-16 15:06:40,764 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:06:40,764 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:06:40,765 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:06:40,768 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:06:40,769 - INFO - Features criadas: 28 colunas totais
+2025-10-16 15:06:40,770 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:06:40,770 - INFO - Dataset final: 1827 linhas, 28 colunas
+2025-10-16 15:06:40,770 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:06:40,770 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DENATRAN', 'INPE']
+2025-10-16 15:06:40,771 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 15:06:40,771 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:06:40,771 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:06:40,772 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:06:40,772 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:06:40,772 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:06:40,772 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:06:40,772 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:06:40,772 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:06:40,772 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:06:40,772 - INFO - Validação concluída
+2025-10-16 15:06:40,772 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:06:40,818 - INFO - Dados salvos:
+2025-10-16 15:06:40,818 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:06:40,818 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:06:40,818 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:06:40,819 - INFO -    Dimensões: 1827 linhas x 28 colunas
+2025-10-16 15:06:40,819 - INFO - Pipeline concluído em 2.24 segundos
+2025-10-16 15:06:40,819 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:07:12,177 - INFO - Diretórios criados/verificados
+2025-10-16 15:07:12,178 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:07:12,178 - INFO - Fase 1: Extração de dados
+2025-10-16 15:07:12,178 - INFO - Processando dados FEPAM...
+2025-10-16 15:07:12,179 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 15:07:12,289 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv: 8736 registros
+2025-10-16 15:07:12,289 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv
+2025-10-16 15:07:12,300 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv: 6070 registros
+2025-10-16 15:07:12,300 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv
+2025-10-16 15:07:12,313 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv: 8712 registros
+2025-10-16 15:07:12,313 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv
+2025-10-16 15:07:12,330 - INFO -   OK temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv: 1319 registros
+2025-10-16 15:07:12,335 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:07:12,335 - INFO - Processando dados INMET...
+2025-10-16 15:07:12,336 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:07:12,377 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:07:12,377 - INFO -     Número de colunas: 9
+2025-10-16 15:07:12,491 - INFO - INMET: 43848 registros
+2025-10-16 15:07:12,493 - INFO - Processando dados DATASUS...
+2025-10-16 15:07:12,494 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:07:12,494 - INFO -   Cabeçalho encontrado na linha 0
+2025-10-16 15:07:12,495 - ERROR - Erro processando DATASUS: Error tokenizing data. C error: Expected 1 fields in line 5, saw 2
+
+2025-10-16 15:07:12,497 - ERROR - Traceback (most recent call last):
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 331, in _extract_datasus_data
+    df = pd.read_csv(file_path, sep=';', skiprows=header_line, encoding='utf-8')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 626, in _read
+    return parser.read(nrows)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\PycharmProjects\air_quality_project\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 1 fields in line 5, saw 2
+
+
+2025-10-16 15:07:12,497 - INFO - Processando dados DENATRAN...
+2025-10-16 15:07:12,497 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:07:12,499 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:07:12,502 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:07:12,502 - INFO - Processando dados INPE...
+2025-10-16 15:07:12,503 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:07:12,506 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:07:12,506 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:07:12,510 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:07:12,510 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:07:12,513 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:07:12,513 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:07:12,516 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:07:12,516 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:07:12,519 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:07:12,530 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:07:12,530 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:07:12,538 - INFO - OK fepam: resample aplicado
+2025-10-16 15:07:12,543 - INFO - OK inmet: resample aplicado
+2025-10-16 15:07:12,547 - INFO - OK denatran: resample aplicado
+2025-10-16 15:07:12,547 - INFO - OK inpe: resample aplicado
+2025-10-16 15:07:12,547 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:07:12,554 - INFO - Base FEPAM processada: 55 registros, 5 colunas
+2025-10-16 15:07:12,555 - INFO - OK inmet: unificado com sucesso - 1827 registros
+2025-10-16 15:07:12,556 - INFO - OK denatran: unificado com sucesso - 1827 registros
+2025-10-16 15:07:12,557 - INFO - OK inpe: unificado com sucesso - 1827 registros
+2025-10-16 15:07:12,557 - INFO - Dataset unificado: 1827 registros, 16 features
+2025-10-16 15:07:12,557 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:07:12,558 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:07:12,558 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:07:12,562 - INFO - Features criadas: 28 colunas totais
+2025-10-16 15:07:12,562 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:07:12,562 - INFO - Dataset final: 1827 linhas, 28 colunas
+2025-10-16 15:07:12,562 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:07:12,563 - INFO -   FEPAM: 9 colunas de poluentes
+2025-10-16 15:07:12,563 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DENATRAN', 'INPE']
+2025-10-16 15:07:12,563 - INFO - Missing values por fonte:
+2025-10-16 15:07:12,564 - INFO -   FEPAM - Colunas com >50% missing: 9
+2025-10-16 15:07:12,564 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:07:12,564 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:07:12,564 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:07:12,564 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:07:12,564 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:07:12,564 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:07:12,564 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:07:12,565 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:07:12,565 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:07:12,566 - WARNING -   INMET - Colunas com >50% missing: 9
+2025-10-16 15:07:12,567 - INFO - Validação concluída
+2025-10-16 15:07:12,567 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:07:12,608 - INFO - Dados salvos:
+2025-10-16 15:07:12,608 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:07:12,608 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:07:12,609 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:07:12,609 - INFO -    Dimensões: 1827 linhas x 28 colunas
+2025-10-16 15:07:12,609 - INFO - Pipeline concluído em 0.43 segundos
+2025-10-16 15:07:12,609 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:09:25,793 - INFO - Diretórios criados/verificados
+2025-10-16 15:09:25,793 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:09:25,793 - INFO - Fase 1: Extração de dados
+2025-10-16 15:09:25,793 - INFO - Processando dados FEPAM...
+2025-10-16 15:09:25,794 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:09:26,648 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:09:27,029 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:09:27,439 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:09:27,797 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:09:27,803 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:09:27,803 - INFO - Processando dados INMET...
+2025-10-16 15:09:27,804 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:09:27,839 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:09:27,839 - INFO -     Número de colunas: 9
+2025-10-16 15:09:27,941 - INFO - INMET: 43848 registros
+2025-10-16 15:09:27,944 - INFO - Processando dados DATASUS...
+2025-10-16 15:09:27,944 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:09:27,948 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 15:09:27,948 - INFO -   Coluna de data (assumida 1ª): 2019, Coluna de internações (assumida 2ª): 558
+2025-10-16 15:09:27,955 - WARNING - Nenhum registro DATASUS no período 2020-2024 após conversão de data
+2025-10-16 15:09:27,956 - INFO - Processando dados DENATRAN...
+2025-10-16 15:09:27,956 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:09:27,958 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:09:27,961 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:09:27,961 - INFO - Processando dados INPE...
+2025-10-16 15:09:27,961 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:09:27,965 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:09:27,965 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:09:27,968 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:09:27,968 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:09:27,971 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:09:27,971 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:09:27,974 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:09:27,974 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:09:27,977 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:09:27,985 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:09:27,985 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:09:27,993 - INFO - OK fepam: resample aplicado
+2025-10-16 15:09:27,997 - INFO - OK inmet: resample aplicado
+2025-10-16 15:09:28,000 - INFO - OK denatran: resample aplicado
+2025-10-16 15:09:28,000 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:09:28,000 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:09:28,008 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:09:28,009 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:09:28,009 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:09:28,010 - INFO - Dataset unificado: 1827 registros, 16 features
+2025-10-16 15:09:28,010 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:09:28,010 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:09:28,010 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:09:28,014 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:09:28,016 - INFO - Features criadas: 28 colunas totais
+2025-10-16 15:09:28,016 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:09:28,016 - INFO - Dataset final: 1827 linhas, 28 colunas
+2025-10-16 15:09:28,016 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:09:28,017 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DENATRAN', 'INPE']
+2025-10-16 15:09:28,018 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 15:09:28,018 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:09:28,018 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:09:28,018 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:09:28,018 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:09:28,018 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:09:28,018 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:09:28,018 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:09:28,018 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:09:28,018 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:09:28,018 - INFO - Validação concluída
+2025-10-16 15:09:28,018 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:09:28,061 - INFO - Dados salvos:
+2025-10-16 15:09:28,061 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:09:28,061 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:09:28,062 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:09:28,062 - INFO -    Dimensões: 1827 linhas x 28 colunas
+2025-10-16 15:09:28,062 - INFO - Pipeline concluído em 2.27 segundos
+2025-10-16 15:09:28,062 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:11:30,089 - INFO - Diretórios criados/verificados
+2025-10-16 15:11:30,089 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:11:30,089 - INFO - Fase 1: Extração de dados
+2025-10-16 15:11:30,090 - INFO - Processando dados FEPAM...
+2025-10-16 15:11:30,090 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:11:30,939 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:11:31,371 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:11:31,787 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:11:32,158 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:11:32,163 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:11:32,163 - INFO - Processando dados INMET...
+2025-10-16 15:11:32,164 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:11:32,197 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:11:32,197 - INFO -     Número de colunas: 9
+2025-10-16 15:11:32,301 - INFO - INMET: 43848 registros
+2025-10-16 15:11:32,304 - INFO - Processando dados DATASUS...
+2025-10-16 15:11:32,304 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:11:32,309 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 15:11:32,309 - INFO -   Coluna de data (assumida 1ª): 2019, Coluna de internações (assumida 2ª): 558
+2025-10-16 15:11:32,345 - INFO - DATASUS: 1827 registros diários (média mensal aplicada)
+2025-10-16 15:11:32,345 - INFO - Processando dados DENATRAN...
+2025-10-16 15:11:32,346 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:11:32,347 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:11:32,350 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:11:32,351 - INFO - Processando dados INPE...
+2025-10-16 15:11:32,351 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:11:32,354 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:11:32,355 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:11:32,358 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:11:32,358 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:11:32,361 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:11:32,361 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:11:32,365 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:11:32,365 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:11:32,369 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:11:32,380 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:11:32,380 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:11:32,394 - INFO - OK fepam: resample aplicado
+2025-10-16 15:11:32,399 - INFO - OK inmet: resample aplicado
+2025-10-16 15:11:32,403 - INFO - OK datasus: resample aplicado
+2025-10-16 15:11:32,405 - INFO - OK denatran: resample aplicado
+2025-10-16 15:11:32,405 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:11:32,405 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:11:32,414 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:11:32,416 - INFO - OK datasus: unificado com sucesso
+2025-10-16 15:11:32,417 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:11:32,418 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:11:32,418 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:11:32,418 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:11:32,419 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:11:32,419 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:11:32,423 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:11:32,424 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:11:32,424 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:11:32,424 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:11:32,424 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:11:32,424 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:11:32,426 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 15:11:32,426 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:11:32,426 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:11:32,426 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:11:32,426 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:11:32,426 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:11:32,426 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:11:32,426 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:11:32,426 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:11:32,426 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:11:32,426 - INFO - Validação concluída
+2025-10-16 15:11:32,426 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:11:32,470 - INFO - Dados salvos:
+2025-10-16 15:11:32,470 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:11:32,470 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:11:32,470 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:11:32,471 - INFO -    Dimensões: 1827 linhas x 29 colunas
+2025-10-16 15:11:32,471 - INFO - Pipeline concluído em 2.38 segundos
+2025-10-16 15:11:32,471 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:15:09,583 - INFO - Diretórios criados/verificados
+2025-10-16 15:15:09,583 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:15:09,583 - INFO - Fase 1: Extração de dados
+2025-10-16 15:15:09,583 - INFO - Processando dados FEPAM...
+2025-10-16 15:15:09,585 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 15:15:09,690 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv: 8736 registros
+2025-10-16 15:15:09,690 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv
+2025-10-16 15:15:09,701 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv: 6070 registros
+2025-10-16 15:15:09,701 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv
+2025-10-16 15:15:09,714 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv: 8712 registros
+2025-10-16 15:15:09,714 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv
+2025-10-16 15:15:09,730 - INFO -   OK temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv: 1319 registros
+2025-10-16 15:15:09,735 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:15:09,735 - INFO - Processando dados INMET...
+2025-10-16 15:15:09,736 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:15:09,771 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:15:09,772 - INFO -     Número de colunas: 9
+2025-10-16 15:15:09,881 - INFO - INMET: 43848 registros
+2025-10-16 15:15:09,883 - INFO - Processando dados DATASUS...
+2025-10-16 15:15:09,884 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:15:09,916 - INFO - DATASUS: 1827 registros diários (de 64 meses)
+2025-10-16 15:15:09,916 - INFO - Processando dados DENATRAN...
+2025-10-16 15:15:09,917 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:15:09,919 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:15:09,921 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:15:09,921 - INFO - Processando dados INPE...
+2025-10-16 15:15:09,922 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:15:09,925 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:15:09,925 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:15:09,928 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:15:09,928 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:15:09,931 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:15:09,931 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:15:09,934 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:15:09,934 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:15:09,937 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:15:09,946 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:15:09,947 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:15:09,956 - INFO - OK fepam: resample aplicado
+2025-10-16 15:15:09,959 - INFO - OK inmet: resample aplicado
+2025-10-16 15:15:09,962 - INFO - OK datasus: resample aplicado
+2025-10-16 15:15:09,963 - INFO - OK denatran: resample aplicado
+2025-10-16 15:15:09,963 - INFO - OK inpe: resample aplicado
+2025-10-16 15:15:09,964 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:15:09,969 - INFO - Base FEPAM processada: 55 registros, 5 colunas
+2025-10-16 15:15:09,970 - INFO - OK inmet: unificado com sucesso - 1827 registros
+2025-10-16 15:15:09,971 - INFO - OK datasus: unificado com sucesso - 1827 registros
+2025-10-16 15:15:09,972 - INFO - OK denatran: unificado com sucesso - 1827 registros
+2025-10-16 15:15:09,973 - INFO - OK inpe: unificado com sucesso - 1827 registros
+2025-10-16 15:15:09,973 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:15:09,973 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:15:09,973 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:15:09,973 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:15:09,977 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:15:09,977 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:15:09,977 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:15:09,977 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:15:09,977 - INFO -   FEPAM: 9 colunas de poluentes
+2025-10-16 15:15:09,978 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:15:09,978 - INFO - Missing values por fonte:
+2025-10-16 15:15:09,979 - INFO -   FEPAM - Colunas com >50% missing: 9
+2025-10-16 15:15:09,979 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:15:09,979 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:15:09,979 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:15:09,979 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:15:09,979 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:15:09,979 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:15:09,979 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:15:09,979 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:15:09,979 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:15:09,981 - WARNING -   INMET - Colunas com >50% missing: 9
+2025-10-16 15:15:09,984 - INFO - Validação concluída
+2025-10-16 15:15:09,984 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:15:10,029 - INFO - Dados salvos:
+2025-10-16 15:15:10,029 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:15:10,029 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:15:10,029 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:15:10,029 - INFO -    Dimensões: 1827 linhas x 29 colunas
+2025-10-16 15:15:10,029 - INFO - Pipeline concluído em 0.45 segundos
+2025-10-16 15:15:10,029 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:16:09,179 - INFO - Diretórios criados/verificados
+2025-10-16 15:16:09,179 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:16:09,179 - INFO - Fase 1: Extração de dados
+2025-10-16 15:16:09,179 - INFO - Processando dados FEPAM...
+2025-10-16 15:16:09,179 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 15:16:09,274 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv: 8736 registros
+2025-10-16 15:16:09,274 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv
+2025-10-16 15:16:09,274 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv: 6070 registros
+2025-10-16 15:16:09,274 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv
+2025-10-16 15:16:09,290 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv: 8712 registros
+2025-10-16 15:16:09,290 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv
+2025-10-16 15:16:09,306 - INFO -   OK temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv: 1319 registros
+2025-10-16 15:16:09,306 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:16:09,306 - INFO - Processando dados INMET...
+2025-10-16 15:16:09,306 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:16:09,338 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:16:09,338 - INFO -     Número de colunas: 9
+2025-10-16 15:16:09,449 - INFO - INMET: 43848 registros
+2025-10-16 15:16:09,449 - INFO - Processando dados DATASUS...
+2025-10-16 15:16:09,449 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:16:09,481 - INFO - DATASUS: 1827 registros diários (de 64 meses)
+2025-10-16 15:16:09,481 - INFO - Processando dados DENATRAN...
+2025-10-16 15:16:09,481 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:16:09,481 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:16:09,481 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:16:09,481 - INFO - Processando dados INPE...
+2025-10-16 15:16:09,481 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:16:09,497 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:16:09,497 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:16:09,497 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:16:09,497 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:16:09,497 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:16:09,497 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:16:09,497 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:16:09,497 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:16:09,497 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:16:09,512 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:16:09,512 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:16:09,528 - INFO - OK fepam: resample aplicado
+2025-10-16 15:16:09,528 - INFO - OK inmet: resample aplicado
+2025-10-16 15:16:09,528 - INFO - OK datasus: resample aplicado
+2025-10-16 15:16:09,528 - INFO - OK denatran: resample aplicado
+2025-10-16 15:16:09,528 - INFO - OK inpe: resample aplicado
+2025-10-16 15:16:09,528 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:16:09,544 - INFO - Base FEPAM processada: 55 registros, 5 colunas
+2025-10-16 15:16:09,546 - INFO - OK inmet: unificado com sucesso - 1827 registros
+2025-10-16 15:16:09,546 - INFO - OK datasus: unificado com sucesso - 1827 registros
+2025-10-16 15:16:09,546 - INFO - OK denatran: unificado com sucesso - 1827 registros
+2025-10-16 15:16:09,548 - INFO - OK inpe: unificado com sucesso - 1827 registros
+2025-10-16 15:16:09,548 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:16:09,548 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:16:09,548 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:16:09,548 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:16:09,552 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:16:09,552 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:16:09,552 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:16:09,552 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:16:09,552 - INFO -   FEPAM: 9 colunas de poluentes
+2025-10-16 15:16:09,552 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:16:09,552 - INFO - Missing values por fonte:
+2025-10-16 15:16:09,554 - INFO -   FEPAM - Colunas com >50% missing: 9
+2025-10-16 15:16:09,554 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:16:09,554 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:16:09,554 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:16:09,554 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:16:09,554 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:16:09,554 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:16:09,554 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:16:09,554 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:16:09,554 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:16:09,556 - WARNING -   INMET - Colunas com >50% missing: 9
+2025-10-16 15:16:09,558 - INFO - Validação concluída
+2025-10-16 15:16:09,558 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:16:09,599 - INFO - Dados salvos:
+2025-10-16 15:16:09,601 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:16:09,601 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:16:09,601 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:16:09,601 - INFO -    Dimensões: 1827 linhas x 29 colunas
+2025-10-16 15:16:09,601 - INFO - Pipeline concluído em 0.42 segundos
+2025-10-16 15:16:09,601 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:16:26,082 - INFO - Diretórios criados/verificados
+2025-10-16 15:16:26,082 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:16:26,082 - INFO - Fase 1: Extração de dados
+2025-10-16 15:16:26,083 - INFO - Processando dados FEPAM...
+2025-10-16 15:16:26,084 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:16:27,023 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:16:27,420 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:16:27,824 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:16:28,176 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:16:28,180 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:16:28,181 - INFO - Processando dados INMET...
+2025-10-16 15:16:28,181 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:16:28,215 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:16:28,215 - INFO -     Número de colunas: 9
+2025-10-16 15:16:28,317 - INFO - INMET: 43848 registros
+2025-10-16 15:16:28,320 - INFO - Processando dados DATASUS...
+2025-10-16 15:16:28,320 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:16:28,324 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 15:16:28,324 - INFO -   Coluna de data (assumida 1ª): 2019, Coluna de internações (assumida 2ª): 558
+2025-10-16 15:16:28,361 - INFO - DATASUS: 1827 registros diários (média mensal aplicada)
+2025-10-16 15:16:28,361 - INFO - Processando dados DENATRAN...
+2025-10-16 15:16:28,362 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:16:28,364 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:16:28,366 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:16:28,366 - INFO - Processando dados INPE...
+2025-10-16 15:16:28,367 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:16:28,370 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:16:28,370 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:16:28,374 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:16:28,374 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:16:28,377 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:16:28,377 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:16:28,380 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:16:28,380 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:16:28,384 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:16:28,393 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:16:28,394 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:16:28,404 - INFO - OK fepam: resample aplicado
+2025-10-16 15:16:28,409 - INFO - OK inmet: resample aplicado
+2025-10-16 15:16:28,412 - INFO - OK datasus: resample aplicado
+2025-10-16 15:16:28,414 - INFO - OK denatran: resample aplicado
+2025-10-16 15:16:28,414 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:16:28,414 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:16:28,423 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:16:28,424 - INFO - OK datasus: unificado com sucesso
+2025-10-16 15:16:28,425 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:16:28,426 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:16:28,426 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:16:28,426 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:16:28,426 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:16:28,426 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:16:28,431 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:16:28,432 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:16:28,432 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:16:28,432 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:16:28,432 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:16:28,433 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:16:28,434 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 15:16:28,434 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:16:28,434 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:16:28,434 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:16:28,434 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:16:28,434 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:16:28,434 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:16:28,434 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:16:28,434 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:16:28,434 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:16:28,434 - INFO - Validação concluída
+2025-10-16 15:16:28,434 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:16:28,479 - INFO - Dados salvos:
+2025-10-16 15:16:28,479 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:16:28,479 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:16:28,479 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:16:28,479 - INFO -    Dimensões: 1827 linhas x 29 colunas
+2025-10-16 15:16:28,480 - INFO - Pipeline concluído em 2.40 segundos
+2025-10-16 15:16:28,480 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:20:17,936 - INFO - Diretórios criados/verificados
+2025-10-16 15:20:17,936 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:20:17,936 - INFO - Fase 1: Extração de dados
+2025-10-16 15:20:17,936 - INFO - Processando dados FEPAM...
+2025-10-16 15:20:17,937 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv
+2025-10-16 15:20:18,033 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2021_raw.csv: 8736 registros
+2025-10-16 15:20:18,033 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv
+2025-10-16 15:20:18,042 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2022_raw.csv: 6070 registros
+2025-10-16 15:20:18,042 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv
+2025-10-16 15:20:18,054 - INFO -   OK temp_fepam_qualidade_ar_Canoas_PUni_2023_raw.csv: 8712 registros
+2025-10-16 15:20:18,055 - INFO -   Lendo CSV: temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv
+2025-10-16 15:20:18,068 - INFO -   OK temp_fepam_qualidade_ar_POA_CETE_2024_raw.csv: 1319 registros
+2025-10-16 15:20:18,073 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:20:18,073 - INFO - Processando dados INMET...
+2025-10-16 15:20:18,074 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:20:18,112 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:20:18,112 - INFO -     Número de colunas: 9
+2025-10-16 15:20:18,224 - INFO - INMET: 43848 registros
+2025-10-16 15:20:18,227 - INFO - Processando dados DATASUS...
+2025-10-16 15:20:18,227 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:20:18,260 - INFO - DATASUS: 1827 registros diários (de 64 meses)
+2025-10-16 15:20:18,261 - INFO - Processando dados DENATRAN...
+2025-10-16 15:20:18,261 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:20:18,263 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:20:18,265 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:20:18,265 - INFO - Processando dados INPE...
+2025-10-16 15:20:18,266 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:20:18,269 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:20:18,269 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:20:18,272 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:20:18,273 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:20:18,275 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:20:18,276 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:20:18,279 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:20:18,279 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:20:18,281 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:20:18,291 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:20:18,291 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:20:18,300 - INFO - OK fepam: resample aplicado
+2025-10-16 15:20:18,305 - INFO - OK inmet: resample aplicado
+2025-10-16 15:20:18,307 - INFO - OK datasus: resample aplicado
+2025-10-16 15:20:18,308 - INFO - OK denatran: resample aplicado
+2025-10-16 15:20:18,308 - INFO - OK inpe: resample aplicado
+2025-10-16 15:20:18,309 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:20:18,314 - INFO - Base FEPAM processada: 55 registros, 5 colunas
+2025-10-16 15:20:18,315 - INFO - OK inmet: unificado com sucesso - 1827 registros
+2025-10-16 15:20:18,316 - INFO - OK datasus: unificado com sucesso - 1827 registros
+2025-10-16 15:20:18,317 - INFO - OK denatran: unificado com sucesso - 1827 registros
+2025-10-16 15:20:18,317 - INFO - OK inpe: unificado com sucesso - 1827 registros
+2025-10-16 15:20:18,318 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:20:18,318 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:20:18,318 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:20:18,318 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:20:18,322 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:20:18,322 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:20:18,322 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:20:18,323 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:20:18,323 - INFO -   FEPAM: 9 colunas de poluentes
+2025-10-16 15:20:18,323 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:20:18,323 - INFO - Missing values por fonte:
+2025-10-16 15:20:18,324 - INFO -   FEPAM - Colunas com >50% missing: 9
+2025-10-16 15:20:18,324 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:20:18,324 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:20:18,324 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:20:18,324 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:20:18,324 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:20:18,324 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:20:18,324 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:20:18,324 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:20:18,325 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:20:18,326 - WARNING -   INMET - Colunas com >50% missing: 9
+2025-10-16 15:20:18,328 - INFO - Validação concluída
+2025-10-16 15:20:18,328 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:20:18,369 - INFO - Dados salvos:
+2025-10-16 15:20:18,369 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:20:18,369 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:20:18,369 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:20:18,369 - INFO -    Dimensões: 1827 linhas x 29 colunas
+2025-10-16 15:20:18,369 - INFO - Pipeline concluído em 0.43 segundos
+2025-10-16 15:20:18,369 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:22:18,923 - INFO - Diretórios criados/verificados
+2025-10-16 15:22:18,923 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:22:18,923 - INFO - Fase 1: Extração de dados
+2025-10-16 15:22:18,923 - INFO - Processando dados FEPAM...
+2025-10-16 15:22:18,924 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:22:19,724 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:22:20,130 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:22:20,535 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:22:20,879 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:22:20,884 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:22:20,884 - INFO - Processando dados INMET...
+2025-10-16 15:22:20,884 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:22:20,920 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:22:20,920 - INFO -     Número de colunas: 9
+2025-10-16 15:22:21,021 - INFO - INMET: 43848 registros
+2025-10-16 15:22:21,023 - INFO - Processando dados DATASUS...
+2025-10-16 15:22:21,023 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:22:21,027 - INFO -   Primeiras linhas DATASUS:               2019    558
+0  ..Setembro/2019    7.0
+1   ..Outubro/2019   37.0
+2  ..Novembro/2019  131.0
+2025-10-16 15:22:21,027 - INFO -   Coluna de data (assumida 1ª): 2019, Coluna de internações (assumida 2ª): 558
+2025-10-16 15:22:21,062 - INFO - DATASUS: 1827 registros diários (média mensal aplicada)
+2025-10-16 15:22:21,062 - INFO - Processando dados DENATRAN...
+2025-10-16 15:22:21,063 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:22:21,065 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:22:21,068 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:22:21,068 - INFO - Processando dados INPE...
+2025-10-16 15:22:21,068 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:22:21,071 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:22:21,071 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:22:21,074 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:22:21,074 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:22:21,077 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:22:21,077 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:22:21,081 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:22:21,081 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:22:21,086 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:22:21,096 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:22:21,098 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:22:21,107 - INFO - OK fepam: resample aplicado
+2025-10-16 15:22:21,113 - INFO - OK inmet: resample aplicado
+2025-10-16 15:22:21,115 - INFO - OK datasus: resample aplicado
+2025-10-16 15:22:21,117 - INFO - OK denatran: resample aplicado
+2025-10-16 15:22:21,117 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:22:21,117 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:22:21,124 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:22:21,125 - INFO - OK datasus: unificado com sucesso
+2025-10-16 15:22:21,126 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:22:21,126 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:22:21,127 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:22:21,127 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:22:21,128 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:22:21,128 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:22:21,131 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:22:21,132 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:22:21,133 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:22:21,133 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:22:21,133 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:22:21,133 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:22:21,134 - WARNING - Colunas com muitos missing values: 9 colunas
+2025-10-16 15:22:21,134 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:22:21,134 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:22:21,134 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:22:21,134 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:22:21,134 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:22:21,135 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:22:21,135 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:22:21,135 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:22:21,135 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:22:21,135 - INFO - Validação concluída
+2025-10-16 15:22:21,135 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:22:21,182 - INFO - Dados salvos:
+2025-10-16 15:22:21,182 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:22:21,182 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:22:21,182 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:22:21,183 - INFO -    Dimensões: 1827 linhas x 29 colunas
+2025-10-16 15:22:21,183 - INFO - Pipeline concluído em 2.26 segundos
+2025-10-16 15:22:21,183 - INFO - Pipeline executado com sucesso!
+2025-10-16 15:26:16,268 - INFO - Diretórios criados/verificados
+2025-10-16 15:26:16,268 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:26:16,268 - INFO - Fase 1: Extração de dados
+2025-10-16 15:26:16,268 - INFO - Processando dados FEPAM...
+2025-10-16 15:26:16,269 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:26:17,157 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:26:17,550 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:26:17,973 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:26:18,350 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:26:18,356 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:26:18,356 - INFO - Processando dados INMET...
+2025-10-16 15:26:18,356 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:26:18,394 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:26:18,394 - INFO -     Número de colunas: 9
+2025-10-16 15:26:18,509 - INFO - INMET: 43848 registros
+2025-10-16 15:26:18,511 - INFO - Processando dados DATASUS...
+2025-10-16 15:26:18,511 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:26:18,552 - INFO - DATASUS: 1827 registros diários (média mensal aplicada)
+2025-10-16 15:26:18,552 - INFO - Processando dados DENATRAN...
+2025-10-16 15:26:18,552 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:26:18,554 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:26:18,558 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:26:18,558 - INFO - Processando dados INPE...
+2025-10-16 15:26:18,559 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:26:18,563 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:26:18,563 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:26:18,567 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:26:18,567 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:26:18,571 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:26:18,571 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:26:18,576 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:26:18,576 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:26:18,580 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:26:18,590 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:26:18,591 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:26:18,602 - INFO - OK fepam: resample aplicado
+2025-10-16 15:26:18,608 - INFO - OK inmet: resample aplicado
+2025-10-16 15:26:18,610 - INFO - OK datasus: resample aplicado
+2025-10-16 15:26:18,612 - INFO - OK denatran: resample aplicado
+2025-10-16 15:26:18,612 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:26:18,613 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:26:18,621 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:26:18,622 - INFO - OK datasus: unificado com sucesso
+2025-10-16 15:26:18,623 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:26:18,623 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:26:18,624 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:26:18,624 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:26:18,624 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:26:18,624 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:26:18,628 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:26:18,630 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:26:18,630 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:26:18,630 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:26:18,630 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:26:18,630 - INFO -   FEPAM: 9 colunas de poluentes
+2025-10-16 15:26:18,630 - INFO -   INMET: 5 colunas de meteo
+2025-10-16 15:26:18,631 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:26:18,631 - INFO - Missing values por fonte:
+2025-10-16 15:26:18,632 - INFO -   FEPAM - Colunas com >50% missing: 9
+2025-10-16 15:26:18,632 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:26:18,632 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:26:18,633 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:26:18,633 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:26:18,633 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:26:18,633 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:26:18,633 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:26:18,633 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:26:18,633 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:26:18,634 - INFO -   INMET - Colunas com >50% missing: 0
+2025-10-16 15:26:18,634 - ERROR - Erro no pipeline: 'numpy.float64' object has no attribute 'iloc'
+2025-10-16 15:26:18,636 - ERROR - Traceback (most recent call last):
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 88, in run_pipeline
+    self._validate_data(final_data)
+  File "C:\Users\julia\PycharmProjects\air_quality_project\src\data\load_and_clean.py", line 783, in _validate_data
+    if datasus_missing.iloc[0] > 50:
+       ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'numpy.float64' object has no attribute 'iloc'
+
+2025-10-16 15:26:18,636 - ERROR - Pipeline falhou!
+2025-10-16 15:28:13,087 - INFO - Diretórios criados/verificados
+2025-10-16 15:28:13,087 - INFO - INICIANDO PIPELINE DE PROCESSAMENTO DE DADOS
+2025-10-16 15:28:13,087 - INFO - Fase 1: Extração de dados
+2025-10-16 15:28:13,087 - INFO - Processando dados FEPAM...
+2025-10-16 15:28:13,088 - INFO -   Convertendo arquivos XLSX para CSV...
+2025-10-16 15:28:13,951 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2021_raw.xlsx: 8736 registros
+2025-10-16 15:28:14,324 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2022_raw.xlsx: 6070 registros
+2025-10-16 15:28:14,724 - INFO -   OK fepam_qualidade_ar_Canoas_PUni_2023_raw.xlsx: 8712 registros
+2025-10-16 15:28:15,068 - INFO -   OK fepam_qualidade_ar_POA_CETE_2024_raw.xlsx: 1319 registros
+2025-10-16 15:28:15,072 - INFO - Dados FEPAM combinados: 24837 registros
+2025-10-16 15:28:15,072 - INFO - Processando dados INMET...
+2025-10-16 15:28:15,073 - INFO -   Lendo inmet_meteo_a801_2020_2024_raw.csv
+2025-10-16 15:28:15,107 - INFO -     Colunas INMET: ['Data Medicao', 'Hora Medicao', 'PRECIPITACAO TOTAL, HORARIO(mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA(°C)', 'TEMPERATURA DO PONTO DE ORVALHO(°C)', 'UMIDADE RELATIVA DO AR, HORARIA(%)', 'VENTO, DIRECAO HORARIA (gr)(° (gr))', 'VENTO, VELOCIDADE HORARIA(m/s)', 'Unnamed: 8']
+2025-10-16 15:28:15,107 - INFO -     Número de colunas: 9
+2025-10-16 15:28:15,210 - INFO - INMET: 43848 registros
+2025-10-16 15:28:15,213 - INFO - Processando dados DATASUS...
+2025-10-16 15:28:15,213 - INFO -   Lendo datasus_internacoes_respiratorias_2020_2024_raw.csv
+2025-10-16 15:28:15,251 - INFO - DATASUS: 1827 registros diários (média mensal aplicada)
+2025-10-16 15:28:15,251 - INFO - Processando dados DENATRAN...
+2025-10-16 15:28:15,252 - INFO -   Lendo denatran_frota_veicular_poa_2006_2024_raw.csv
+2025-10-16 15:28:15,253 - INFO -   Anos processados: [2020, 2021, 2022, 2023, 2024]
+2025-10-16 15:28:15,256 - INFO - DENATRAN: 1827 registros diários (2020-2024)
+2025-10-16 15:28:15,256 - INFO - Processando dados INPE...
+2025-10-16 15:28:15,257 - INFO -   Lendo inpe_focos_calor_2020_raw.csv
+2025-10-16 15:28:15,260 - INFO -   OK inpe_focos_calor_2020_raw.csv: 3 focos
+2025-10-16 15:28:15,260 - INFO -   Lendo inpe_focos_calor_2021_raw.csv
+2025-10-16 15:28:15,263 - INFO -   OK inpe_focos_calor_2021_raw.csv: 2 focos
+2025-10-16 15:28:15,263 - INFO -   Lendo inpe_focos_calor_2022_raw.csv
+2025-10-16 15:28:15,266 - INFO -   OK inpe_focos_calor_2022_raw.csv: 1 focos
+2025-10-16 15:28:15,266 - INFO -   Lendo inpe_focos_calor_2023_raw.csv
+2025-10-16 15:28:15,270 - INFO -   OK inpe_focos_calor_2023_raw.csv: 1 focos
+2025-10-16 15:28:15,270 - INFO -   Lendo inpe_focos_calor_2024_raw.csv
+2025-10-16 15:28:15,273 - INFO -   OK inpe_focos_calor_2024_raw.csv: 1 focos
+2025-10-16 15:28:15,282 - INFO - Queimadas: 1827 dias (zeros preenchidos)
+2025-10-16 15:28:15,282 - INFO - Fase 2: Transformação de dados
+2025-10-16 15:28:15,294 - INFO - OK fepam: resample aplicado
+2025-10-16 15:28:15,298 - INFO - OK inmet: resample aplicado
+2025-10-16 15:28:15,300 - INFO - OK datasus: resample aplicado
+2025-10-16 15:28:15,302 - INFO - OK denatran: resample aplicado
+2025-10-16 15:28:15,302 - INFO - OK inpe: índice datetime aplicado (já agregado)
+2025-10-16 15:28:15,302 - INFO - Fase 3: Unificação de dados
+2025-10-16 15:28:15,311 - INFO - OK inmet: unificado com sucesso
+2025-10-16 15:28:15,312 - INFO - OK datasus: unificado com sucesso
+2025-10-16 15:28:15,313 - INFO - OK denatran: unificado com sucesso
+2025-10-16 15:28:15,315 - INFO - OK inpe: unificado com sucesso
+2025-10-16 15:28:15,315 - INFO - Dataset unificado: 1827 registros, 17 features
+2025-10-16 15:28:15,315 - INFO - Aplicando filtro temporal: 2020-2024
+2025-10-16 15:28:15,316 - INFO - Dataset após filtro: 1827 registros (2020-2024)
+2025-10-16 15:28:15,316 - INFO - Fase 4: Engenharia de Features
+2025-10-16 15:28:15,319 - INFO -   Criando lags para coluna: PM2_5_Porto_Alegre
+2025-10-16 15:28:15,320 - INFO - Features criadas: 29 colunas totais
+2025-10-16 15:28:15,320 - INFO - Fase 5: Validação de Dados
+2025-10-16 15:28:15,320 - INFO - Dataset final: 1827 linhas, 29 colunas
+2025-10-16 15:28:15,322 - INFO - Período: 2020-01-01 00:00:00-03:00 a 2024-12-31 00:00:00-03:00
+2025-10-16 15:28:15,322 - INFO -   FEPAM: 9 colunas de poluentes
+2025-10-16 15:28:15,322 - INFO -   INMET: 5 colunas de meteo
+2025-10-16 15:28:15,322 - INFO - Fontes de dados presentes: ['FEPAM', 'INMET', 'DATASUS', 'DENATRAN', 'INPE']
+2025-10-16 15:28:15,322 - INFO - Missing values por fonte:
+2025-10-16 15:28:15,324 - INFO -   FEPAM (+ Lags) - Colunas com >50% missing: 9
+2025-10-16 15:28:15,324 - WARNING -     CO_Porto_Alegre: 97.0% missing
+2025-10-16 15:28:15,324 - WARNING -     NO2_Porto_Alegre: 97.2% missing
+2025-10-16 15:28:15,324 - WARNING -     O3_Porto_Alegre: 97.0% missing
+2025-10-16 15:28:15,324 - WARNING -     PM2_5_Porto_Alegre: 97.0% missing
+2025-10-16 15:28:15,324 - WARNING -     SO2_Porto_Alegre: 97.4% missing
+2025-10-16 15:28:15,324 - WARNING -     PM2_5_Porto_Alegre_lag_1: 97.0% missing
+2025-10-16 15:28:15,324 - WARNING -     PM2_5_Porto_Alegre_lag_2: 97.1% missing
+2025-10-16 15:28:15,324 - WARNING -     PM2_5_Porto_Alegre_lag_3: 97.2% missing
+2025-10-16 15:28:15,324 - WARNING -     PM2_5_Porto_Alegre_lag_7: 97.4% missing
+2025-10-16 15:28:15,325 - INFO -   INMET - Colunas com >50% missing: 0
+2025-10-16 15:28:15,326 - INFO - Validação concluída
+2025-10-16 15:28:15,326 - INFO - Fase 6: Persistência de Dados
+2025-10-16 15:28:15,368 - INFO - Dados salvos:
+2025-10-16 15:28:15,368 - INFO -    CSV completo: ..\..\data\processed\air_quality_processed.csv
+2025-10-16 15:28:15,368 - INFO -    Estatísticas: ..\..\data\processed\dataset_statistics.json
+2025-10-16 15:28:15,368 - INFO -    Período: 2020-01-01 a 2024-12-31
+2025-10-16 15:28:15,369 - INFO -    Dimensões: 1827 linhas x 29 colunas
+2025-10-16 15:28:15,369 - INFO - Pipeline concluído em 2.28 segundos
+2025-10-16 15:28:15,369 - INFO - Pipeline executado com sucesso!

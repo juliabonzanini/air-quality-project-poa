@@ -1,0 +1,15 @@
+{
+  "processing_date": "2025-10-16T15:28:15.366091",
+  "total_records": 1827,
+  "total_features": 29,
+  "date_range_start": "2020-01-01T00:00:00-03:00",
+  "date_range_end": "2024-12-31T00:00:00-03:00",
+  "data_sources_used": [
+    "fepam",
+    "inmet",
+    "datasus",
+    "denatran",
+    "inpe"
+  ],
+  "columns_with_high_missing": 9
+}
