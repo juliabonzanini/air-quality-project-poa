@@ -1,0 +1,14 @@
+# Ambientes Virtuais
+venv/
+*.DS_Store
+
+# Dados grandes (não devem ser versionados diretamente)
+data/raw/
+data/processed/
+
+# Modelos treinados
+models/*.joblib
+models/*.pkl
+
+# Notebooks temporários
+.ipynb_checkpoints/
