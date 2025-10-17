@@ -1,3 +1,6 @@
+statsmodels
+scipy
+seaborn
 pandas
 numpy
 scikit-learn
