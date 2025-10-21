@@ -1,0 +1,60 @@
+{
+    "notebook": "03_Modelagem_Preditiva.ipynb",
+    "autor": "Júlia Valandro Bonzanini",
+    "disciplina": "Projeto Integrador III - UFMS Digital",
+    "projeto": "Modelo Preditivo de Qualidade do Ar e Riscos à Saúde em Porto Alegre",
+    "descricao_geral": "Treinamento refinado e avaliação comparativa dos modelos Random Forest e XGBoost para previsão de PM10 a 3 dias, integrando dados meteorológicos e de saúde.",
+    "resultados": {
+        "baselines": {
+            "PersistÃªncia": {
+                "R2": -0.18148688483768427,
+                "RMSE": 0.8504164720781678,
+                "MAE": 0.6176676360514909
+            },
+            "MÃ©dia_MÃ³vel_3d": {
+                "R2": 0.49895756771938105,
+                "RMSE": 0.5538019295380204,
+                "MAE": 0.42572395103537336
+            }
+        },
+        "models": {
+            "RandomForest": {
+                "params": {
+                    "max_depth": 15,
+                    "min_samples_leaf": 2,
+                    "n_estimators": 400
+                },
+                "metrics": {
+                    "R2": 0.6246041073575115,
+                    "RMSE": 0.4793601961017645,
+                    "MAE": 0.3855005579484115
+                }
+            },
+            "XGBoost": {
+                "params": {
+                    "learning_rate": 0.05,
+                    "max_depth": 8,
+                    "n_estimators": 200,
+                    "subsample": 1.0
+                },
+                "metrics": {
+                    "R2": 0.618150111895345,
+                    "RMSE": 0.48346333653643436,
+                    "MAE": 0.38451137513172895
+                }
+            }
+        }
+    },
+    "principais_insights": [
+        "O RandomForest obteve R² de aproximadamente 0.62 e RMSE ~0.48, superando os baselines.",
+        "XGBoost teve desempenho similar, com leve vantagem em generalização temporal.",
+        "Variáveis de vento, temperatura e focos de queimadas mostraram forte influência nas previsões.",
+        "A inclusão das internações respiratórias reforçou a conexão entre poluição e impacto à saúde pública."
+    ],
+    "proximos_passos": [
+        "Expandir a modelagem para múltiplas estações (Porto Alegre, Esteio, Charqueadas).",
+        "Testar arquiteturas LSTM e Prophet híbrido para séries temporais longas.",
+        "Integrar previsões meteorológicas externas (INMET, CPTEC) como variáveis exógenas.",
+        "Desenvolver dashboard interativo para visualização e alertas em tempo real."
+    ]
+}
