@@ -1,14 +1,15 @@
-# src/features/features_final.py
+# src/features/features.py
 """
-Feature Engineering - Versão Final e Otimizada
+Feature Engineering - Versão Final e Otimizada (com Saúde e Previsão de 3 Dias)
 Autora: Júlia Valandro Bonzanini
 Projeto: Modelo Preditivo de Qualidade do Ar e Riscos à Saúde em Porto Alegre (2020–2024)
 Disciplina: Projeto Integrador de Ciência dos Dados III - UFMS Digital
 
 Descrição:
 Gera o conjunto final de features a partir do dataset processado (air_quality_processed.csv),
-incluindo variáveis temporais, meteorológicas, lags, médias móveis e indicadores externos.
-Estruturação em blocos otimiza a performance e elimina fragmentação do DataFrame.
+incluindo variáveis temporais, meteorológicas, de saúde (internações respiratórias),
+lags, médias móveis e indicadores externos.
+O target é definido como PM10 três dias à frente (PM10_next_3d).
 """
 
 import pandas as pd
@@ -22,12 +23,13 @@ from pathlib import Path
 # ============================================================
 
 class Config:
-    DATA_PATH = Path("../../data/processed/air_quality_processed.csv")
-    OUTPUT_PATH = Path("../../data/processed/air_quality_features.csv")
-    REPORTS_PATH = Path("../../reports")
+    ROOT_PATH = Path(__file__).resolve().parents[2]
+    DATA_PATH = ROOT_PATH / "data" / "processed" / "air_quality_processed.csv"
+    OUTPUT_PATH = ROOT_PATH / "data" / "processed" / "air_quality_features.csv"
+    REPORTS_PATH = ROOT_PATH / "reports"
     TARGET_VAR = "PM10_Canoas"
-    USE_CLASSIFICATION = True       # True -> gera AQI_category_next_1d
-    DROP_LAST_TARGET_NAN = True      # descarta última linha (sem target)
+    USE_CLASSIFICATION = True       # True -> gera AQI_category_next_3d
+    DROP_LAST_TARGET_NAN = True     # descarta últimas linhas sem target
 
 
 # ============================================================
@@ -131,7 +133,27 @@ def add_meteorological_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ============================================================
-# Bloco 4 - Eventos externos (queimadas e feriados)
+# Bloco 4 - Saúde: Internações respiratórias
+# ============================================================
+
+def add_health_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Adiciona features de saúde pública (internações respiratórias)."""
+    idx = df.index
+    adm = df.get("internacoes_respiratorias", pd.Series(np.nan, index=idx))
+
+    feats = pd.DataFrame({
+        "internacoes_respiratorias": adm,
+        "internacoes_lag1": adm.shift(1),
+        "internacoes_lag3": adm.shift(3),
+        "internacoes_roll3": adm.rolling(3, min_periods=1).mean(),
+        "internacoes_roll7": adm.rolling(7, min_periods=1).mean(),
+    }, index=idx)
+
+    return feats
+
+
+# ============================================================
+# Bloco 5 - Eventos externos (queimadas e feriados)
 # ============================================================
 
 def add_external_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -148,18 +170,20 @@ def add_external_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ============================================================
-# Bloco 5 - Target (PM10_next_day e AQI)
+# Bloco 6 - Target (PM10_next_3d e AQI)
 # ============================================================
 
 def add_target(df: pd.DataFrame, target: str, classification: bool = True) -> pd.DataFrame:
-    """Cria target de regressão e classificação (AQI) com base no PM10_next_day."""
-    pm10_next = df[target].shift(-1)
-    out = {"PM10_next_day": pm10_next}
+    """Cria target de regressão e classificação (AQI) com base no PM10_next_3d."""
+    pm10_next_3d = df[target].shift(-3)
+    out = {"PM10_next_3d": pm10_next_3d}
 
-    # Classificação do AQI baseada nos valores do PM10
-    bins = [0, 25, 50, 75, 125, np.inf]
-    labels = ["Boa", "Moderada", "Ruim", "Muito Ruim", "Crítica"]
-    out["AQI_category_next_1d"] = pd.cut(pm10_next, bins=bins, labels=labels, include_lowest=True)
+    if classification:
+        bins = [0, 25, 50, 75, 125, np.inf]
+        labels = ["Boa", "Moderada", "Ruim", "Muito Ruim", "Crítica"]
+        out["AQI_category_next_3d"] = pd.cut(pm10_next_3d, bins=bins, labels=labels, include_lowest=True)
+    else:
+        out["AQI_category_next_3d"] = np.nan
 
     return pd.DataFrame(out, index=df.index)
 
@@ -170,7 +194,7 @@ def add_target(df: pd.DataFrame, target: str, classification: bool = True) -> pd
 
 def run_feature_engineering():
     setup_logging()
-    logging.info("Iniciando feature engineering final...")
+    logging.info("Iniciando feature engineering final (com saúde e previsão 3 dias)...")
 
     df_raw = pd.read_csv(Config.DATA_PATH, parse_dates=["datetime"], index_col="datetime")
 
@@ -188,11 +212,12 @@ def run_feature_engineering():
     temporal_blk = add_temporal_features(df_raw.index)
     pollutant_blk = add_pollutant_features(df_raw, pollutants)
     meteo_blk = add_meteorological_features(df_raw)
+    health_blk = add_health_features(df_raw)
     external_blk = add_external_features(df_raw)
     target_blk = add_target(df_raw, Config.TARGET_VAR, Config.USE_CLASSIFICATION)
 
     # concatenar tudo
-    df = pd.concat([df_raw, temporal_blk, pollutant_blk, meteo_blk, external_blk, target_blk], axis=1)
+    df = pd.concat([df_raw, temporal_blk, pollutant_blk, meteo_blk, health_blk, external_blk, target_blk], axis=1)
 
     # corrigir holiday_flag com base em is_weekend (tratamento seguro)
     if "holiday_flag" in df.columns and "is_weekend" in df.columns:
@@ -201,9 +226,9 @@ def run_feature_engineering():
             is_weekend_series = is_weekend_series.iloc[:, 0]
         df["holiday_flag"] = df["holiday_flag"].fillna(is_weekend_series)
 
-    # remover linha final com target NaN
+    # remover linhas finais sem target
     if Config.DROP_LAST_TARGET_NAN:
-        df = df[df["PM10_next_day"].notna()]
+        df = df[df["PM10_next_3d"].notna()]
 
     # defragmentar e salvar
     df = df.copy()
