@@ -1,248 +1,301 @@
-# src/features/features.py
 """
-Feature Engineering - Versão Final e Otimizada (com Saúde e Previsão de 3 Dias)
+Pipeline de engenharia de atributos
 Autora: Júlia Valandro Bonzanini
-Projeto: Modelo Preditivo de Qualidade do Ar e Riscos à Saúde em Porto Alegre (2020–2024)
-Disciplina: Projeto Integrador de Ciência dos Dados III - UFMS Digital
+Projeto: Modelo Preditivo de Qualidade do Ar - Porto Alegre
+Revisão: Outubro/2025
 
-Descrição:
-Gera o conjunto final de features a partir do dataset processado (air_quality_processed.csv),
-incluindo variáveis temporais, meteorológicas, de saúde (internações respiratórias),
-lags, médias móveis e indicadores externos.
-O target é definido como PM10 três dias à frente (PM10_next_3d).
+Avanços técnicos:
+- Mitigação de drift estrutural da variável 'frota_veicular'
+- Criação de 'frota_index' (índice relativo a 2020) e 'frota_centered' (anomalia anual)
+- Manutenção da coerência temporal (timezone, integridade diária)
+- Preserva a distinção entre dataset full (com lacunas) e pro (para modelagem)
+- Compatibilidade total com train_model_refined.py e dashboard.py
 """
 
 import pandas as pd
 import numpy as np
 import logging
+import warnings
 from pathlib import Path
 
+warnings.filterwarnings('ignore')
 
-# ============================================================
-# Configurações globais
-# ============================================================
+# ==============================
+# Configurações
+# ==============================
 
 class Config:
-    ROOT_PATH = Path(__file__).resolve().parents[2]
-    DATA_PATH = ROOT_PATH / "data" / "processed" / "air_quality_processed.csv"
-    OUTPUT_PATH = ROOT_PATH / "data" / "processed" / "air_quality_features.csv"
-    REPORTS_PATH = ROOT_PATH / "reports"
-    TARGET_VAR = "PM10_Canoas"
-    USE_CLASSIFICATION = True       # True -> gera AQI_category_next_3d
-    DROP_LAST_TARGET_NAN = True     # descarta últimas linhas sem target
+    TIMEZONE = 'America/Sao_Paulo'
+    DATA_PROCESSED_PATH = Path('../../data/processed')
+    REPORTS_PATH = Path('../../reports')
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 
-# ============================================================
-# Logging
-# ============================================================
+# ==============================
+# Utilitários base
+# ==============================
 
-def setup_logging():
-    """Configura logging para registrar execução em arquivo e console."""
-    Config.REPORTS_PATH.mkdir(parents=True, exist_ok=True)
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        handlers=[
-            logging.FileHandler(Config.REPORTS_PATH / "feature_engineering.log"),
-            logging.StreamHandler()
-        ]
-    )
-
-
-# ============================================================
-# Bloco 1 - Features Temporais
-# ============================================================
-
-def add_temporal_features(index: pd.DatetimeIndex) -> pd.DataFrame:
-    """Gera features temporais (cíclicas e categóricas)."""
-    df_temp = pd.DataFrame({
-        "year": index.year,
-        "month": index.month,
-        "day": index.day,
-        "weekday": index.weekday,
-        "is_weekend": index.weekday.isin([5, 6]).astype(int),
-        "dayofyear": index.dayofyear,
-        "julian_day": index.to_julian_date().astype(int),
-    }, index=index)
-
-    # codificação cíclica
-    df_temp["sin_dayofyear"] = np.sin(2 * np.pi * df_temp["dayofyear"] / 365)
-    df_temp["cos_dayofyear"] = np.cos(2 * np.pi * df_temp["dayofyear"] / 365)
-    return df_temp
-
-
-# ============================================================
-# Bloco 2 - Lags e janelas móveis dos poluentes
-# ============================================================
-
-def add_pollutant_features(df: pd.DataFrame, pollutants: list) -> pd.DataFrame:
-    """Cria lags, médias e extremos móveis para os poluentes."""
-    features = []
-
-    for pol in pollutants:
-        if pol not in df.columns:
-            continue
-        s = df[pol]
-        feats = {
-            f"{pol}_lag1": s.shift(1),
-            f"{pol}_lag2": s.shift(2),
-            f"{pol}_lag3": s.shift(3),
-            f"{pol}_lag7": s.shift(7),
-            f"{pol}_rolling_mean_3": s.rolling(3, min_periods=1).mean(),
-            f"{pol}_rolling_mean_7": s.rolling(7, min_periods=1).mean(),
-            f"{pol}_rolling_std_7": s.rolling(7, min_periods=1).std(),
-            f"{pol}_rolling_min_7": s.rolling(7, min_periods=1).min(),
-            f"{pol}_rolling_max_7": s.rolling(7, min_periods=1).max(),
-        }
-        features.append(pd.DataFrame(feats, index=df.index))
-
-    return pd.concat(features, axis=1) if features else pd.DataFrame(index=df.index)
-
-
-# ============================================================
-# Bloco 3 - Meteorologia e índices compostos
-# ============================================================
-
-def add_meteorological_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Gera variáveis derivadas de temperatura, umidade, vento e dispersão atmosférica."""
-    idx = df.index
-    temperatura = df.get("temperatura", pd.Series(np.nan, index=idx))
-    umidade = df.get("umidade", pd.Series(np.nan, index=idx))
-    vento_vel = df.get("vento_velocidade", pd.Series(np.nan, index=idx))
-    vento_dir = df.get("vento_direcao", pd.Series(np.nan, index=idx))
-    precip = df.get("precipitacao", pd.Series(np.nan, index=idx))
-
-    temp_diff_daynight = temperatura.rolling(7, min_periods=1).max() - temperatura.rolling(7, min_periods=1).min()
-    umidade_inv = 100 - umidade
-    vento_log = np.log1p(vento_vel.clip(lower=0))
-    dispersao_index = vento_vel * (umidade / 100)
-    inversao_proxy = (temp_diff_daynight < 3).astype(float)
-
-    return pd.DataFrame({
-        "temperatura": temperatura,
-        "umidade": umidade,
-        "vento_velocidade": vento_vel,
-        "vento_direcao": vento_dir,
-        "precipitacao": precip,
-        "temp_diff_daynight": temp_diff_daynight,
-        "umidade_inv": umidade_inv,
-        "vento_log": vento_log,
-        "dispersao_index": dispersao_index,
-        "inversao_proxy": inversao_proxy,
-    }, index=idx)
-
-
-# ============================================================
-# Bloco 4 - Saúde: Internações respiratórias
-# ============================================================
-
-def add_health_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Adiciona features de saúde pública (internações respiratórias)."""
-    idx = df.index
-    adm = df.get("internacoes_respiratorias", pd.Series(np.nan, index=idx))
-
-    feats = pd.DataFrame({
-        "internacoes_respiratorias": adm,
-        "internacoes_lag1": adm.shift(1),
-        "internacoes_lag3": adm.shift(3),
-        "internacoes_roll3": adm.rolling(3, min_periods=1).mean(),
-        "internacoes_roll7": adm.rolling(7, min_periods=1).mean(),
-    }, index=idx)
-
-    return feats
-
-
-# ============================================================
-# Bloco 5 - Eventos externos (queimadas e feriados)
-# ============================================================
-
-def add_external_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Adiciona focos de queimadas e flag de feriados."""
-    idx = df.index
-    fire = df.get("focos_queimadas_count", pd.Series(0, index=idx))
-    fire_roll7 = fire.rolling(7, min_periods=1).mean()
-
-    return pd.DataFrame({
-        "fire_count": fire,
-        "fire_count_roll7": fire_roll7,
-        "holiday_flag": np.nan,  # preenchido depois
-    }, index=idx)
-
-
-# ============================================================
-# Bloco 6 - Target (PM10_next_3d e AQI)
-# ============================================================
-
-def add_target(df: pd.DataFrame, target: str, classification: bool = True) -> pd.DataFrame:
-    """Cria target de regressão e classificação (AQI) com base no PM10_next_3d."""
-    pm10_next_3d = df[target].shift(-3)
-    out = {"PM10_next_3d": pm10_next_3d}
-
-    if classification:
-        bins = [0, 25, 50, 75, 125, np.inf]
-        labels = ["Boa", "Moderada", "Ruim", "Muito Ruim", "Crítica"]
-        out["AQI_category_next_3d"] = pd.cut(pm10_next_3d, bins=bins, labels=labels, include_lowest=True)
-    else:
-        out["AQI_category_next_3d"] = np.nan
-
-    return pd.DataFrame(out, index=df.index)
-
-
-# ============================================================
-# Execução principal do pipeline
-# ============================================================
-
-def run_feature_engineering():
-    setup_logging()
-    logging.info("Iniciando feature engineering final (com saúde e previsão 3 dias)...")
-
-    df_raw = pd.read_csv(Config.DATA_PATH, parse_dates=["datetime"], index_col="datetime")
-
-    # garantir timezone
-    if df_raw.index.tz is None:
-        df_raw.index = df_raw.index.tz_localize("America/Sao_Paulo")
-    else:
-        df_raw.index = df_raw.index.tz_convert("America/Sao_Paulo")
-
-    logging.info(f"Dataset carregado: {df_raw.shape[0]} registros, {df_raw.shape[1]} colunas.")
-
-    pollutants = [c for c in df_raw.columns if any(p in c for p in ["PM10", "NO2", "O3", "SO2", "CO"])]
-
-    # gerar blocos
-    temporal_blk = add_temporal_features(df_raw.index)
-    pollutant_blk = add_pollutant_features(df_raw, pollutants)
-    meteo_blk = add_meteorological_features(df_raw)
-    health_blk = add_health_features(df_raw)
-    external_blk = add_external_features(df_raw)
-    target_blk = add_target(df_raw, Config.TARGET_VAR, Config.USE_CLASSIFICATION)
-
-    # concatenar tudo
-    df = pd.concat([df_raw, temporal_blk, pollutant_blk, meteo_blk, health_blk, external_blk, target_blk], axis=1)
-
-    # corrigir holiday_flag com base em is_weekend (tratamento seguro)
-    if "holiday_flag" in df.columns and "is_weekend" in df.columns:
-        is_weekend_series = df["is_weekend"]
-        if isinstance(is_weekend_series, pd.DataFrame):
-            is_weekend_series = is_weekend_series.iloc[:, 0]
-        df["holiday_flag"] = df["holiday_flag"].fillna(is_weekend_series)
-
-    # remover linhas finais sem target
-    if Config.DROP_LAST_TARGET_NAN:
-        df = df[df["PM10_next_3d"].notna()]
-
-    # defragmentar e salvar
+def _normalize_datetime_index(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    Config.OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(Config.OUTPUT_PATH, index=True)
-    logging.info(f"Feature set final salvo em {Config.OUTPUT_PATH}")
+    df['datetime'] = pd.to_datetime(df['datetime'], errors='coerce')
+    df = df.set_index('datetime').sort_index()
 
+    if df.index.tz is None:
+        df.index = df.index.tz_localize(Config.TIMEZONE, nonexistent='shift_forward', ambiguous='NaT')
+    else:
+        df.index = df.index.tz_convert(Config.TIMEZONE)
+
+    df.index.name = 'datetime'
     return df
 
 
-# ============================================================
-# Execução direta
-# ============================================================
+def _load_input_csv(input_path: Path) -> pd.DataFrame:
+    logging.info(f'📥 Carregando dados de entrada: {input_path}')
+    df = pd.read_csv(input_path)
+    if 'datetime' not in df.columns:
+        raise ValueError("Coluna 'datetime' não encontrada no CSV.")
+    return _normalize_datetime_index(df)
 
-if __name__ == "__main__":
-    final_df = run_feature_engineering()
-    print(final_df.tail())
+
+def _coerce_numeric(df: pd.DataFrame, cols: list) -> pd.DataFrame:
+    for c in cols:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors='coerce')
+    return df
+
+
+def safe_div(a, b):
+    with np.errstate(divide='ignore', invalid='ignore'):
+        return np.where((b == 0) | (~np.isfinite(b)), np.nan, a / b)
+
+
+# ==============================
+# Blocos de features
+# ==============================
+
+def add_temporal_features(df: pd.DataFrame) -> pd.DataFrame:
+    df['month'] = df.index.month
+    df['weekday'] = df.index.weekday
+    df['is_weekend'] = (df['weekday'] >= 5).astype(int)
+    df['dayofyear'] = df.index.day_of_year
+    df['year'] = df.index.year
+
+    df['sin_dayofyear'] = np.sin(2 * np.pi * df['dayofyear'] / 365)
+    df['cos_dayofyear'] = np.cos(2 * np.pi * df['dayofyear'] / 365)
+
+    def get_season(month):
+        if month in [12, 1, 2]:
+            return 'summer'
+        elif month in [3, 4, 5]:
+            return 'autumn'
+        elif month in [6, 7, 8]:
+            return 'winter'
+        else:
+            return 'spring'
+
+    df['season_label'] = df['month'].apply(get_season)
+    df['is_winter'] = (df['season_label'] == 'winter').astype(int)
+    df = pd.get_dummies(df, columns=['season_label'], prefix='season', drop_first=False)
+    return df
+
+
+def add_fleet_features(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Mitiga drift estrutural da variável frota_veicular, substituindo-a por formas estáveis.
+    """
+    if 'frota_veicular' not in df.columns:
+        logging.warning("⚠️ Coluna 'frota_veicular' ausente. Nenhum ajuste aplicado.")
+        return df
+
+    df = _coerce_numeric(df, ['frota_veicular'])
+    df['year'] = df.index.year
+
+    base_val = df['frota_veicular'].iloc[0] if df['frota_veicular'].iloc[0] > 0 else df['frota_veicular'].mean()
+    if base_val == 0 or np.isnan(base_val):
+        base_val = 1.0
+
+    df['frota_index'] = df['frota_veicular'] / base_val
+    df['frota_centered'] = df['frota_veicular'] - df.groupby('year')['frota_veicular'].transform('mean')
+
+    df.drop(columns=['frota_veicular'], inplace=True)
+    logging.info("🚗 Drift controlado: criada 'frota_index' e 'frota_centered'; removida 'frota_veicular'.")
+    return df
+
+
+def add_lag_rolling_features(df: pd.DataFrame, target_col='PM10_Canoas',
+                             lags=(1, 2, 3, 7),
+                             roll_windows=(3, 7, 14, 30)) -> pd.DataFrame:
+    df = _coerce_numeric(df, [target_col])
+    for lag in lags:
+        df[f'{target_col}_lag{lag}'] = df[target_col].shift(lag)
+    for w in roll_windows:
+        df[f'{target_col}_roll_mean_{w}'] = df[target_col].rolling(w).mean()
+        df[f'{target_col}_roll_std_{w}'] = df[target_col].rolling(w).std()
+    df['pm10_ratio_3_30'] = safe_div(df.get(f'{target_col}_roll_mean_3'), df.get(f'{target_col}_roll_mean_30'))
+    df['pm10_diff_3_30'] = df.get(f'{target_col}_roll_mean_3') - df.get(f'{target_col}_roll_mean_30')
+    return df
+
+
+def add_precipitation_features(df: pd.DataFrame) -> pd.DataFrame:
+    if 'precipitacao' not in df.columns:
+        return df
+    df = _coerce_numeric(df, ['precipitacao'])
+    df['precip_roll_sum_7'] = df['precipitacao'].rolling(7).sum()
+    df['precip_roll_sum_30'] = df['precipitacao'].rolling(30).sum()
+    dry = (df['precipitacao'].fillna(0) == 0).astype(int)
+    df['dry_streak'] = dry.groupby((dry != dry.shift()).cumsum()).cumsum()
+    df['heavy_rain_event'] = (df['precipitacao'] > df['precipitacao'].rolling(30, min_periods=10).quantile(0.9)).astype(int)
+    return df
+
+
+def add_wind_dispersion_features(df: pd.DataFrame) -> pd.DataFrame:
+    if {'vento_velocidade', 'umidade'}.issubset(df.columns):
+        df = _coerce_numeric(df, ['vento_velocidade', 'umidade'])
+        df['dispersao_index'] = df['vento_velocidade'] * (1 - df['umidade'] / 100)
+        df['vento_log'] = np.log1p(df['vento_velocidade'])
+        df['dispersao_rel'] = safe_div(df['dispersao_index'], df['vento_log'])
+    return df
+
+
+def add_interactions(df: pd.DataFrame) -> pd.DataFrame:
+    cols = ['temperatura', 'umidade', 'vento_velocidade']
+    df = _coerce_numeric(df, [c for c in cols if c in df.columns])
+    if {'temperatura', 'PM10_Canoas_lag1'}.issubset(df.columns):
+        df['temp_x_pm10lag1'] = df['temperatura'] * df['PM10_Canoas_lag1']
+    if {'temperatura', 'umidade'}.issubset(df.columns):
+        df['temp_x_umid'] = df['temperatura'] * df['umidade']
+    if {'temperatura', 'vento_velocidade'}.issubset(df.columns):
+        df['temp_x_vento'] = df['temperatura'] * df['vento_velocidade']
+    if 'is_winter' in df.columns and 'umidade' in df.columns:
+        df['winter_x_umidade'] = df['is_winter'] * df['umidade']
+    if 'is_winter' in df.columns and 'vento_velocidade' in df.columns:
+        df['winter_x_vento'] = df['is_winter'] * df['vento_velocidade']
+    return df
+
+
+def add_anomaly_features(df: pd.DataFrame, target_col='PM10_Canoas') -> pd.DataFrame:
+    df = _coerce_numeric(df, [target_col])
+    month_mean = df.groupby('month')[target_col].transform('mean')
+    df['pm10_anomaly'] = df[target_col] - month_mean
+    df['pm10_normalized_monthly'] = safe_div(df[target_col], month_mean)
+
+    df['winter_mean_year'] = (
+        df[df['is_winter'] == 1]
+        .groupby('year')[target_col]
+        .transform('mean')
+    )
+    df['winter_mean_year'] = df['winter_mean_year'].reindex(df.index, method='ffill').fillna(method='bfill')
+    df['winter_intensity_index'] = safe_div(df[target_col], df['winter_mean_year'])
+    df['seasonal_anomaly'] = df['pm10_anomaly'] * (1 + 0.2 * df['is_winter'])
+    return df
+
+
+def add_correlation_features(df: pd.DataFrame, target_col='PM10_Canoas', roll=7) -> pd.DataFrame:
+    def rolling_corr(a, b, window):
+        return a.rolling(window).corr(b)
+    for col in ['temperatura', 'umidade', 'vento_velocidade']:
+        if col in df.columns:
+            df = _coerce_numeric(df, [col])
+            df[f'corr_{col}_pm10'] = rolling_corr(df[col], df[target_col], roll)
+    return df
+
+
+# ==============================
+# Finalização e controle temporal
+# ==============================
+
+def finalize_features(df: pd.DataFrame, keep_full_timeline: bool = True) -> pd.DataFrame:
+    df.replace([np.inf, -np.inf], np.nan, inplace=True)
+    target_col = 'PM10_Canoas'
+    exog_cols = [c for c in df.columns if c != target_col]
+
+    df[exog_cols] = df[exog_cols].interpolate(method='linear', limit=7, limit_direction='both')
+    df[exog_cols] = df[exog_cols].ffill(limit=3).bfill(limit=3)
+
+    df['has_target'] = (~df[target_col].isna()).astype(int)
+    nan_run = df[target_col].isna().astype(int)
+    run_id = (nan_run != nan_run.shift()).cumsum()
+    df['gap_len'] = nan_run.groupby(run_id).transform('sum').where(nan_run == 1, 0)
+    df['is_long_gap'] = (df['gap_len'] > 7).astype(int)
+
+    return df if keep_full_timeline else df[df['has_target'] == 1]
+
+
+def summarize_features(df: pd.DataFrame, output_path: Path):
+    summary = pd.DataFrame({
+        'feature': df.columns,
+        'mean': df.mean(numeric_only=True),
+        'std': df.std(numeric_only=True),
+        'min': df.min(numeric_only=True),
+        'max': df.max(numeric_only=True),
+        'non_null': df.notnull().sum()
+    })
+    summary.to_csv(output_path, index=False)
+
+
+# ==============================
+# Função principal
+# ==============================
+
+def generate_features(input_path: Path = None, output_path: Path = None) -> pd.DataFrame:
+    if input_path is None:
+        input_path = Config.DATA_PROCESSED_PATH / 'air_quality_processed.csv'
+    if output_path is None:
+        output_path = Config.DATA_PROCESSED_PATH / 'air_quality_features_pro.csv'
+
+    df = _load_input_csv(input_path)
+
+    logging.info('🕒 Adicionando features temporais...')
+    df = add_temporal_features(df)
+
+    logging.info('🚗 Corrigindo drift de frota veicular...')
+    df = add_fleet_features(df)
+
+    logging.info('📈 Criando lags e médias móveis...')
+    df = add_lag_rolling_features(df)
+
+    logging.info('🌧️ Criando features de precipitação...')
+    df = add_precipitation_features(df)
+
+    logging.info('💨 Criando índices de dispersão...')
+    df = add_wind_dispersion_features(df)
+
+    logging.info('⚙️ Criando interações físico-sazonais...')
+    df = add_interactions(df)
+
+    logging.info('📊 Criando anomalias e índices sazonais...')
+    df = add_anomaly_features(df)
+
+    logging.info('🔗 Calculando correlações móveis...')
+    df = add_correlation_features(df)
+
+    # ===========================
+    # Finalização e exportação
+    # ===========================
+    df_full = finalize_features(df, keep_full_timeline=True)
+    df_train = df_full[df_full['has_target'] == 1].copy()
+
+    full_out = Config.DATA_PROCESSED_PATH / 'air_quality_features_full.csv'
+    df_full.to_csv(full_out, index=True)
+    df_train.to_csv(output_path, index=True)
+
+    summarize_features(df_full, Config.REPORTS_PATH / 'feature_summary.csv')
+    missing_by_year = df_full['PM10_Canoas'].isna().astype(int).groupby(df_full.index.year).sum()
+    missing_by_year.to_csv(Config.REPORTS_PATH / 'missing_by_year.csv')
+
+    logging.info(f"✅ Salvo: {full_out.name} (full) e {output_path.name} (train)")
+    logging.info(f"📏 Linhas (full): {len(df_full)} | Linhas (train): {len(df_train)}")
+    logging.info("🏁 Engenharia de atributos finalizada com sucesso.")
+    return df_train
+
+
+# ==============================
+# Execução direta
+# ==============================
+
+if __name__ == '__main__':
+    generate_features()

@@ -1,0 +1,5 @@
+
+==== RESUMO COMPARATIVO ====
+Ganho médio de R²: -2.23%
+Redução média de RMSE: -1.60%
+============================

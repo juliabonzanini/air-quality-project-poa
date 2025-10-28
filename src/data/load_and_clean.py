@@ -1,10 +1,10 @@
 # src/data/load_and_clean.py
 """
-Pipeline de limpeza e pré-processamento de dados - Versão Foco em PM10_Canoas
+Pipeline de limpeza e pré-processamento de dados
 Autor: Júlia Valandro Bonzanini
 Projeto: Modelo Preditivo de Qualidade do Ar - Porto Alegre
-Objetivo: Utilizar apenas a série PM10 (Canoas, 2020-2024) para modelagem,
-          ignorando PM2.5 para manter a consistência temporal e espacial dos dados
+Objetivo: Utiliza a série PM10 (Canoas, 2020-2024) para modelagem,
+          mantendo a consistência temporal e espacial dos dados
           de Material Particulado.
 """
 
