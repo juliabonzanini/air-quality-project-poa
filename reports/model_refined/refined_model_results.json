@@ -1,41 +1,41 @@
 {
-    "baselines": {
-        "Persistência": {
-            "R2": -0.18148688483768427,
-            "RMSE": 0.8504164720781678,
-            "MAE": 0.6176676360514909
-        },
-        "Média_Móvel_3d": {
-            "R2": 0.49895756771938105,
-            "RMSE": 0.5538019295380204,
-            "MAE": 0.42572395103537336
-        }
+  "timestamp": "2025-11-12T17:21:51.172878",
+  "global_r2_after_isotonic": 0.8402878873938134,
+  "fold_metrics_mean": {
+    "R2": 0.8306116007664601,
+    "RMSE": 3.0568635768413643,
+    "MAE": 1.6260283179608515,
+    "SMAPE": 9.696157740333637
+  },
+  "drift_top10": {
+    "temp_x_pm10lag1": 90.33822736509717,
+    "dayofyear": 11.688999326145563,
+    "O3_Canoas": 6.372787547582838,
+    "temp_x_vento": 5.957667951116296,
+    "vento_direcao": 5.658275332608639,
+    "pm10_anomaly": 3.1626240866544695,
+    "temperatura": 2.974682071741274,
+    "SO2_Canoas": 2.7111061674987376,
+    "NO2_Canoas": 2.602853910040567,
+    "temperatura_orvalho": 2.4381163709564273
+  },
+  "n_samples": 902,
+  "n_features": 58,
+  "has_monthly_iso": true,
+  "has_conformal": true,
+  "target_transform_enabled": true,
+  "target_transform_type": "asinh",
+  "meta_fallback": {
+    "winter": {
+      "used": false,
+      "which": null,
+      "reason": null
     },
-    "models": {
-        "RandomForest": {
-            "params": {
-                "max_depth": 15,
-                "min_samples_leaf": 2,
-                "n_estimators": 400
-            },
-            "metrics": {
-                "R2": 0.6246041073575115,
-                "RMSE": 0.4793601961017645,
-                "MAE": 0.3855005579484115
-            }
-        },
-        "XGBoost": {
-            "params": {
-                "learning_rate": 0.05,
-                "max_depth": 8,
-                "n_estimators": 200,
-                "subsample": 1.0
-            },
-            "metrics": {
-                "R2": 0.618150111895345,
-                "RMSE": 0.48346333653643436,
-                "MAE": 0.38451137513172895
-            }
-        }
+    "nonwinter": {
+      "used": false,
+      "which": null,
+      "reason": null
     }
+  },
+  "predictions_csv": "..\\..\\reports\\model_refined\\predictions_with_uncertainty.csv"
 }

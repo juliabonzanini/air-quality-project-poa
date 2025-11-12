@@ -1,0 +1,11 @@
+{
+  "variance_removed": [],
+  "corr_removed": [
+    "base_pred_2",
+    "base_pred_3",
+    "base_pred_4",
+    "vento_log",
+    "temp_x_umid",
+    "winter_x_umidade"
+  ]
+}
